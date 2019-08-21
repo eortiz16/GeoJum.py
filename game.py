@@ -21,7 +21,7 @@ class GeoJumpy:
                 
                 glOrtho(-self.width, self.width, -self.height, self.height, -1, 1)
 
-                self.player = Player(100, 100)
+                self.player = BallPlayer(100, 100)
         
         def loop(self):
                 # Begin Game Loop
@@ -33,7 +33,6 @@ class GeoJumpy:
 
                         # glOrtho(self.camera.left, self.camera.right, self.camera.bottom, self.camera.top, -1, 1)
                         # glOrtho(self.player.center.x - 800, self.player.center.x + 800, self.player.center.y - 600, self.player.center.y + 600, -1, 1)
-
 
                         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
 
