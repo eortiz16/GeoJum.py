@@ -1,7 +1,10 @@
 from OpenGL.GL import *
 from OpenGL.GLU import *
+from math import *
 
 # The objects represented in this file are primitive shapes along with thier corresponding methods 
+
+#RGBA represents red, green, blue and alpha (transparency)
 class RGBA:
     red = int
     green = int
@@ -14,7 +17,6 @@ class RGBA:
         self.blue = blue
         self.alpha = alpha
     
-    @classmethod
     def printState(self):
         print("r: ", self.red)
         print("g: ", self.green)
@@ -34,8 +36,8 @@ class Coordinates:
         print("y: ", self.y)
         print("z: ", self.z)
 
-# Circle is a concrete type
-class Circle:
+# Shape is an abstract type
+class Shape:
     def __init__(self, width, height, color):
         self.width = width
         self.height = height
@@ -43,35 +45,34 @@ class Circle:
         self.coordinates = Coordinates(0,0,0)
         self.velocity = Coordinates(0,0,0)
 
-    def draw(self):
-        right = self.coordinates.x + self.width
-        left = self.coordinates.x - self.width
-        top = self.coordinates.y + self.height
-        bottom = self.coordinates.y - self.height
-
-        glColor4ubv((self.color.red, self.color.green, self.color.blue, self.color.alpha))
-        glBegin(GL_QUADS)
-        glVertex2f(right, bottom)
-        glVertex2f(right, top)
-        glVertex2f(left, top)
-        glVertex2f(left, bottom)
-        glEnd()
-    
     def printState(self):
         print("Width: ", self.width)
         print("Height: ", self.height)
         self.color.printState()
         self.coordinates.printState()
         self.velocity.printState()
+
+# Circle is a concrete type
+class Circle(Shape):
+    def __init__(self, width, height, color):
+        super().__init__(width, height, color)
+
+    def draw(self):
+        sides = 32
+        
+        sides = 32    
+        glBegin(GL_POLYGON)    
+        for i in range(100):    
+            cosine = self.width * cos(i * 2 * pi / sides +  self.coordinates.x)
+            sine = self.width * sin(i * 2 * pi / sides +  self.coordinates.y)  
+            glColor4ubv((self.color.red, self.color.green, self.color.blue, self.color.alpha))
+            glVertex2f(cosine,sine)
+        glEnd()
 
 # Square is a concrete type
-class Square:
+class Square(Shape):
     def __init__(self, width, height, color):
-        self.width = width
-        self.height = height
-        self.color = color
-        self.coordinates = Coordinates(0,0,0)
-        self.velocity = Coordinates(0,0,0)
+        super().__init__(width, height, color)
     
     def draw(self):
         right = self.coordinates.x + self.width
@@ -86,11 +87,3 @@ class Square:
         glVertex2f(left, top)
         glVertex2f(left, bottom)
         glEnd()
-
-    def printState(self):
-        print("Width: ", self.width)
-        print("Height: ", self.height)
-        self.color.printState()
-        self.coordinates.printState()
-        self.velocity.printState()
-

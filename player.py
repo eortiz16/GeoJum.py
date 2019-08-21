@@ -1,5 +1,6 @@
 from shapes import *
 
+#Player is an abstract type
 class Player:
     def __init__(self, width, height):
         self.width = width
@@ -19,19 +20,21 @@ class Player:
         for shape in (self.outline, self.body, self.reflection, self.eye):
             shape.printState()
 
+# Ball Player is a concrete type
 class BallPlayer(Player):
     def __init__(self, width, height):
         super().__init__(width, height)
-        self.outline = Square(self.width + 5, self.height + 5, RGBA(0,0,0,255))
-        self.body = Square(self.width, self.height, RGBA(255,150,150,255))
-        self.reflection = Square(self.width/2, self.height/2, RGBA(255,180,180,255))
-        self.eye = Square(self.width/10, self.height/10, RGBA(0,0,0,255))
+        self.outline = Circle(self.width + 5, self.height + 5, RGBA(0,0,0,255))
+        self.body = Circle(self.width, self.height, RGBA(255,150,150,255))
+        self.reflection = Circle(self.width/2, self.height/2, RGBA(255,180,180,255))
+        self.eye = Circle(self.width/10, self.height/10, RGBA(0,0,0,255))
     
     # order of drawing matters! begin with background, end with foreground
     def draw(self):
         for shape in (self.outline, self.body, self.reflection, self.eye):
             shape.draw()
 
+# BoxPlayer is a concrete type
 class BoxPlayer(Player):
     def __init__(self, width, height):
         super().__init__(width, height)
