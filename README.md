@@ -1,3 +1,4 @@
+![Image description](https://raw.githubusercontent.com/eortiz16/GeoJum.py/master/geojumpy.png)
 # GeoJum.py
 
 Geometric Jum.py is a vertical platforming game featuring characters from `Geometric Meltdown`. This project was developed in Python using OpenGL and Pygame. Below you will find the dependencies for the project. This was developed in a Hackathony fashion on the latest version of Ubuntu. 
