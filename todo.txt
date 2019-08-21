@@ -1,0 +1,7 @@
+Need:
+1. Add Physics
+2. Add Gravity
+3. Add collision to player and platform
+4. Add dynamic allocation of collection of platforms (move vertically)
+5. Add keyboard controls
+6. Correct position of character reflection, eye
