@@ -5,3 +5,4 @@ Need:
 4. Add dynamic allocation of collection of platforms (move vertically)
 5. Add keyboard controls
 6. Correct position of character reflection, eye
+7. Factory Design PAttern

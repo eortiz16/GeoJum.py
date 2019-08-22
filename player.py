@@ -1,4 +1,5 @@
 from shapes import *
+from enum import Enum
 
 #Player is an abstract type
 class Player:
@@ -47,3 +48,15 @@ class BoxPlayer(Player):
     def draw(self):
         for shape in (self.outline, self.body, self.reflection, self.eye):
             shape.draw()
+
+class PlayerType(Enum):
+    BALL = 1
+    BOX = 2
+
+class PlayerFactory:
+    def get_player(self, type):
+        if type == PlayerType.BALL:
+            return BallPlayer(100, 100)
+        else:
+            return BoxPlayer(100, 100)
+

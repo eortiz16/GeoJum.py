@@ -21,8 +21,9 @@ class GeoJumpy:
                 pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
                 glOrtho(-self.width, self.width, -self.height, self.height, -1, 1)
 
-                player = BallPlayer(100, 100)
-                # player = BoxPlayer(100, 100)
+                # player = PlayerFactory().get_player(PlayerType.BALL)
+                player = PlayerFactory().get_player(PlayerType.BOX)
+
                 background = Square(self.width*2, self.height*2, RGBA(0,155,255,255)) #sky blue background
                 platform = Platform(Square(400,20, RGBA(0,255,100,255)))
 
