@@ -24,8 +24,8 @@ class GeoJumpy:
                 # player = PlayerFactory().get_player(PlayerType.BALL)
                 player = PlayerFactory().get_player(PlayerType.BOX)
 
-                background = Square(self.width*2, self.height*2, RGBA(0,155,255,255)) #sky blue background
-                platform = Platform(Square(400,20, RGBA(0,255,100,255)))
+                background = ShapeFactory().get_shape(ShapeType.QUAD,self.width*2, self.height*2, RGBA(0,155,255,255)) #sky blue background
+                platform = Platform(ShapeFactory().get_shape(ShapeType.QUAD,400,20, RGBA(0,255,100,255)))
 
                 self.level = Level(player, background, platform)
         

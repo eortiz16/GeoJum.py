@@ -25,10 +25,10 @@ class Player:
 class BallPlayer(Player):
     def __init__(self, width, height):
         super().__init__(width, height)
-        self.outline = Circle(self.width + 5, self.height + 5, RGBA(0,0,0,255))
-        self.body = Circle(self.width, self.height, RGBA(255,150,150,255))
-        self.reflection = Circle(self.width/2, self.height/2, RGBA(255,180,180,255))
-        self.eye = Circle(self.width/10, self.height/10, RGBA(0,0,0,255))
+        self.outline = ShapeFactory().get_shape(ShapeType.CIRCLE, self.width + 5, self.height + 5, RGBA(0,0,0,255))
+        self.body = ShapeFactory().get_shape(ShapeType.CIRCLE, self.width, self.height, RGBA(255,150,150,255))
+        self.reflection = ShapeFactory().get_shape(ShapeType.CIRCLE, self.width/2, self.height/2, RGBA(255,180,180,255))
+        self.eye = ShapeFactory().get_shape(ShapeType.CIRCLE, self.width/10, self.height/10, RGBA(0,0,0,255))
     
     # order of drawing matters! begin with background, end with foreground
     def draw(self):
@@ -39,10 +39,10 @@ class BallPlayer(Player):
 class BoxPlayer(Player):
     def __init__(self, width, height):
         super().__init__(width, height)
-        self.outline = Square(self.width + 5, self.height + 5, RGBA(0,0,0,255))
-        self.body = Square(self.width, self.height, RGBA(255,150,150,255))
-        self.reflection = Square(self.width/2, self.height/2, RGBA(255,180,180,255))
-        self.eye = Square(self.width/10, self.height/10, RGBA(0,0,0,255))
+        self.outline = ShapeFactory().get_shape(ShapeType.QUAD, self.width + 5, self.height + 5, RGBA(0,0,0,255))
+        self.body = ShapeFactory().get_shape(ShapeType.QUAD, self.width, self.height, RGBA(255,150,150,255))
+        self.reflection = ShapeFactory().get_shape(ShapeType.QUAD, self.width/2, self.height/2, RGBA(255,180,180,255))
+        self.eye = ShapeFactory().get_shape(ShapeType.QUAD, self.width/10, self.height/10, RGBA(0,0,0,255))
 
     # order of drawing matters! begin with background, end with foreground
     def draw(self):

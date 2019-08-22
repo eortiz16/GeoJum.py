@@ -1,6 +1,7 @@
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from math import *
+from enum import Enum
 
 # The objects represented in this file are primitive shapes along with thier corresponding methods 
 
@@ -70,7 +71,7 @@ class Circle(Shape):
         glEnd()
 
 # Square is a concrete type
-class Square(Shape):
+class Quad(Shape):
     def __init__(self, width, height, color):
         super().__init__(width, height, color)
     
@@ -87,3 +88,14 @@ class Square(Shape):
         glVertex2f(left, top)
         glVertex2f(left, bottom)
         glEnd()
+
+class ShapeType(Enum):
+    CIRCLE = 1
+    QUAD = 2
+
+class ShapeFactory:
+    def get_shape(self, type, width, height, color):
+        if type == ShapeType.CIRCLE:
+            return Circle(width, height, color)
+        else:
+            return Quad(width, height, color)
