@@ -43,14 +43,14 @@ class Shape:
         self.width = width
         self.height = height
         self.color = color
-        self.coordinates = Coordinates(0,0,0)
+        self.center = Coordinates(0,0,0)
         self.velocity = Coordinates(0,0,0)
 
     def printState(self):
         print("Width: ", self.width)
         print("Height: ", self.height)
         self.color.printState()
-        self.coordinates.printState()
+        self.center.printState()
         self.velocity.printState()
 
 # Circle is a concrete type
@@ -64,8 +64,8 @@ class Circle(Shape):
         sides = 32    
         glBegin(GL_POLYGON)    
         for i in range(100):    
-            cosine = self.width * cos(i * 2 * pi / sides +  self.coordinates.x)
-            sine = self.width * sin(i * 2 * pi / sides +  self.coordinates.y)  
+            cosine = self.width * cos(i * 2 * pi / sides +  self.center.x)
+            sine = self.width * sin(i * 2 * pi / sides +  self.center.y)  
             glColor4ubv((self.color.red, self.color.green, self.color.blue, self.color.alpha))
             glVertex2f(cosine,sine)
         glEnd()
@@ -76,10 +76,10 @@ class Quad(Shape):
         super().__init__(width, height, color)
     
     def draw(self):
-        right = self.coordinates.x + self.width
-        left = self.coordinates.x - self.width
-        top = self.coordinates.y + self.height
-        bottom = self.coordinates.y - self.height
+        right = self.center.x + self.width
+        left = self.center.x - self.width
+        top = self.center.y + self.height
+        bottom = self.center.y - self.height
 
         glColor4ubv((self.color.red, self.color.green, self.color.blue, self.color.alpha))
         glBegin(GL_QUADS)

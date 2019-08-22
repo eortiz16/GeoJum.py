@@ -7,19 +7,30 @@ class Player:
         self.width = width
         self.height = height
         self.center = Coordinates(0,0,0)
+        self.velocity = Coordinates(0,0,0)
 
     # update all chapes with new center (as character moves accross the screen)
     def update(self):
-        self.outline.coordinates = self.center
-        self.body.coordinates = self.center
-        self.reflection.coordinates = self.center
-        self.eye.coordinates = self.center
+        self.outline.center = self.center
+        self.body.center = self.center
+        self.reflection.center = self.center
+        self.eye.center = self.center
 
     def printState(self):
         print("Width: ", self.width, "\n")
         print("Height: ", self.height, "\n")
         for shape in (self.outline, self.body, self.reflection, self.eye):
             shape.printState()
+
+    def update(self, GRAVITY):
+        self.velocity.y = self.velocity.y - GRAVITY
+        self.center.y += self.velocity.y
+        self.center.x += self.velocity.x
+
+        self.outline.center.y = self.center.y
+        self.body.center.y = self.center.y 
+        self.reflection.center.y = self.center.y 
+        self.eye.center.y = self.center.y
 
 # Ball Player is a concrete type
 class BallPlayer(Player):
